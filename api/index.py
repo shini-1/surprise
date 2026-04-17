@@ -8,6 +8,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "backend"))
 # Import FastAPI app
 from main import app
 
-# ASGI application for Vercel serverless function
-
+# Export the app for Vercel serverless function
+__all__ = ["app"]
 
