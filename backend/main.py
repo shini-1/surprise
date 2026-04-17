@@ -6,10 +6,24 @@ import os
 app = FastAPI()
 
 # Enable CORS for frontend
+VERCEL_URL = os.getenv("VERCEL_URL", "")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
+# Build allowed origins list
+allowed_origins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:8000",
+    FRONTEND_URL,
+]
+
+# Add Vercel production URL
+if VERCEL_URL and VERCEL_URL not in allowed_origins:
+    allowed_origins.append(f"https://{VERCEL_URL}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

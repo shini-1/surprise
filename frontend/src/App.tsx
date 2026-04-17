@@ -15,8 +15,10 @@ export default function App() {
     const fetchPoem = async () => {
       try {
         setLoading(true);
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/poem`);
+        // Use relative URL for API (Vercel will rewrite /api/* to /api/index.py)
+        const apiUrl = import.meta.env.VITE_API_URL || '/api';
+        const endpoint = apiUrl.endsWith('/api') ? `${apiUrl}/poem` : `${apiUrl}/api/poem`;
+        const response = await fetch(endpoint);
         const data = await response.json();
         if (data.success) {
           setPoemStanzas(data.stanzas);
