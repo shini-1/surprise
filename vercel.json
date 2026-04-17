@@ -1,10 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "python -m reflex export --no-zip --frontend-only --no-server-side-rendering",
-  "outputDirectory": ".web/build/client",
-  "functions": {
-    "api/**/*.py": {
-      "excludeFiles": "{.venv/**,tests/**,__tests__/**,**/*.test.py,**/test_*.py,README.md,assets/**,.web/build/client/**}"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
     }
-  }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "outputDirectory": "public"
 }
