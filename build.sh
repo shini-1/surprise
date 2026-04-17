@@ -1,12 +1,13 @@
 #!/bin/bash
-# build.sh
+set -e
 
-# Install Python dependencies
-pip install -r requirements.txt
+echo "Installing frontend dependencies..."
+cd frontend
+npm install
 
-# Generate the static site with Reflex.
-# Ensure this command outputs files to the 'public' directory,
-# as referenced in vercel.json.
-reflex export
+echo "Building frontend..."
+npm run build
+
+echo "Build complete!"
 
 echo "Build completed!"
