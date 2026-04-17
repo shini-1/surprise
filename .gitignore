@@ -1,0 +1,11 @@
+.web
+assets/external/
+.states
+*.py[cod]
+*.db
+.web/
+.states/
+.vercel/
+__pycache__/
+*.pyc
+reflex.db
