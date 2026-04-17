@@ -110,19 +110,33 @@
   }
 
   window.drawBouquet = function drawBouquet(canvasId) {
+    console.log('drawBouquet called with canvasId:', canvasId);
+    
     const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
+    if (!canvas) {
+      console.error('Canvas not found:', canvasId);
+      return;
+    }
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) {
+      console.error('Could not get canvas context');
+      return;
+    }
+
+    console.log('Initial canvas size:', canvas.width, 'x', canvas.height);
 
     // Get the display size and set canvas resolution
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     
+    console.log('Display rect:', rect.width, 'x', rect.height, 'DPR:', dpr);
+    
     // Set canvas resolution (internal drawing size)
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
+    
+    console.log('Set canvas size to:', canvas.width, 'x', canvas.height);
     
     // Scale context to match device pixel ratio
     ctx.scale(dpr, dpr);
@@ -130,12 +144,15 @@
     let width = rect.width;
     let height = rect.height;
 
+    console.log('Drawing area:', width, 'x', height);
+
     // Animation loop
     let startTime = null;
-    const centerX = width / 2;
-    const flowerY = height * 0.35;
+    let frameCount = 0;
     
     function animate() {
+      frameCount++;
+      
       if (!startTime) startTime = Date.now();
       
       const elapsed = Date.now() - startTime;
@@ -144,16 +161,26 @@
       // Cycle index changes every 5 seconds for color variation
       const cycle = Math.floor(elapsed / 5000) % 5;
       
-      // Clear canvas
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(0, 0, width, height);
+      // Only log occasionally to avoid spam
+      if (frameCount % 60 === 0) {
+        console.log('Animation frame:', frameCount, 'bloomPhase:', bloomPhase.toFixed(2), 'cycle:', cycle);
+      }
       
-      // Draw the bouquet using the existing function
-      drawBouquet(ctx, width, height, cycle, bloomPhase);
+      try {
+        // Clear canvas
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, width, height);
+        
+        // Draw the bouquet using the existing function
+        drawBouquet(ctx, width, height, cycle, bloomPhase);
+      } catch (error) {
+        console.error('Error during drawing:', error);
+      }
       
       requestAnimationFrame(animate);
     }
     
+    console.log('Starting animation loop');
     // Start animation immediately
     animate();
   };
