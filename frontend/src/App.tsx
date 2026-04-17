@@ -15,10 +15,13 @@ export default function App() {
     const fetchPoem = async () => {
       try {
         setLoading(true);
-        // Use relative URL for API (Vercel will rewrite /api/* to /api/index.py)
-        const apiUrl = import.meta.env.VITE_API_URL || '/api';
-        const endpoint = apiUrl.endsWith('/api') ? `${apiUrl}/poem` : `${apiUrl}/api/poem`;
-        const response = await fetch(endpoint);
+        // Determine API endpoint
+        const isDevelopment = import.meta.env.DEV;
+        const apiUrl = isDevelopment 
+          ? 'http://localhost:8000/poem'  // Local development
+          : '/api/poem';  // Production (Vercel handles /api/* routing)
+        
+        const response = await fetch(apiUrl);
         const data = await response.json();
         if (data.success) {
           setPoemStanzas(data.stanzas);

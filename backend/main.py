@@ -50,7 +50,7 @@ def get_poem_stanzas():
 #     return {"status": "ok", "message": "FastAPI backend is running"}
 
 
-@app.get("/api/poem")
+@app.get("/poem")
 def get_poem():
     """Get poem stanzas."""
     try:
@@ -68,7 +68,7 @@ def get_poem():
 
 
 # Add more endpoints as needed for app state management
-@app.post("/api/event")
+@app.post("/event")
 def handle_event(event: dict):
     """
     Handle frontend events (placeholder for future state management).
