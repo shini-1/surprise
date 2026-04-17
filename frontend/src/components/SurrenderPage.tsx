@@ -12,6 +12,11 @@ export default function SurrenderPage({ setCurrentPage }: Props) {
       >
         ← Back
       </button>
+      <img
+        src="/tampo_nailong.jpeg"
+        alt="Pouty Nailong"
+        className="hero-image"
+      />
       <h2 className="panel-title">Wala ka na talagang choice</h2>
       <div className="button-row">
         <button

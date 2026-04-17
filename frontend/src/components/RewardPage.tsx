@@ -21,6 +21,11 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
       >
         ← Back
       </button>
+      <img
+        src="/smile_nailong.jpeg"
+        alt="Smiling Nailong"
+        className="hero-image"
+      />
       <h2 className="panel-title">I love you my kalon!</h2>
       <div className="bouquet-container">
         <canvas

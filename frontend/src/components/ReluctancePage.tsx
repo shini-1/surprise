@@ -12,6 +12,11 @@ export default function ReluctancePage({ setCurrentPage }: Props) {
       >
         ← Back
       </button>
+      <img
+        src="/sad_nailong.jpeg"
+        alt="Sad Nailong"
+        className="hero-image"
+      />
       <h2 className="panel-title">Ayaw mo talaga? :(((</h2>
       <div className="button-row">
         <button

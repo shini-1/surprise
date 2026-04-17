@@ -13,8 +13,8 @@ export default function ChoicePage({ setCurrentPage }: Props) {
         ← Back
       </button>
       <img
-        src="/custom_image.png"
-        alt="A romantic placeholder image"
+        src="/smile_nailong.jpeg"
+        alt="Smiling Nailong"
         className="hero-image"
       />
       <h2 className="panel-title">I have something for you</h2>
