@@ -1,7 +1,6 @@
 {
   "buildCommand": "reflex export",
   "outputDirectory": "public",
-  "serverlessFunctionRegion": "us-east-1",
   "rewrites": [
     {
       "source": "/api/(.*)",

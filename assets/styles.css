@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Angelleta&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Angelleta&family=Great+Vibes&display=swap");
 
 :root {
   --hot-pink: #FF69B4;
@@ -18,7 +18,7 @@ body {
   min-height: 100%;
   background: linear-gradient(135deg, #FF69B4 0%, #FFB6D9 100%);
   color: var(--burgundy);
-  font-family: "Nunito", sans-serif;
+  font-family: "Great Vibes", cursive;
   position: relative;
   overflow-x: hidden;
 }
