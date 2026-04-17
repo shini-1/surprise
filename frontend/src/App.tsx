@@ -6,34 +6,47 @@ import ReluctancePage from './components/ReluctancePage';
 import SurrenderPage from './components/SurrenderPage';
 import './App.css';
 
+// Embed poem directly in frontend to avoid API issues
+const POEM_TEXT = `Loving you feels like learning more of myself,
+doing things i've never thought i'd do so naturally.
+Even the quietest corners of my day
+learned how to be loud when your voice is heard even if just one line.
+
+I keep your laughter tucked inside my chest,
+a little song that brightens every room.
+When the world feels too loud and much too fast,
+your love makes everything gentle again.
+
+You are the blush of sunrise on my window,
+the calm after every restless night.
+In every dream I did not know to ask for,
+somehow your face was waiting there for me.
+
+So here is my heart in playful little pieces,
+wrapped in petals, color, and a grin.
+Every small choice I make keeps saying this:
+I would still choose you, again and again.
+
+If ever you wonder what you mean to me,
+read the hush between each tender line.
+It says I love you in five different ways,
+and all of them still feels much too small for you.`;
+
+function getPoemStanzas(): string[][] {
+  const stanzas = POEM_TEXT.split('\n\n').map(stanza =>
+    stanza.split('\n').map(line => line.trim()).filter(line => line)
+  );
+  return stanzas;
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [poemStanzas, setPoemStanzas] = useState<string[][]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchPoem = async () => {
-      try {
-        setLoading(true);
-        // Determine API endpoint
-        const isDevelopment = import.meta.env.DEV;
-        const apiUrl = isDevelopment 
-          ? 'http://localhost:8000/poem'  // Local development
-          : '/api/poem';  // Production (Vercel handles /api/* routing)
-        
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        if (data.success) {
-          setPoemStanzas(data.stanzas);
-        }
-      } catch (error) {
-        console.error('Failed to fetch poem:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPoem();
+    // Load poem stanzas from embedded text
+    const stanzas = getPoemStanzas();
+    setPoemStanzas(stanzas);
   }, []);
 
   const renderPage = () => {
@@ -54,10 +67,6 @@ export default function App() {
         return <GreetingPage {...commonProps} />;
     }
   };
-
-  if (loading && poemStanzas.length === 0) {
-    return <div className="main-card">Loading...</div>;
-  }
 
   return (
     <div className="app-shell">
