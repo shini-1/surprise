@@ -12,5 +12,41 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (() => {
+        const heartColors = ['#FF1493', '#FF69B4', '#FFB6D9', '#FF6B9D', '#C4226F'];
+        
+        function createHeart() {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.textContent = '♥';
+          
+          const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+          heart.style.color = color;
+          
+          const startX = Math.random() * window.innerWidth;
+          const startY = window.innerHeight + 50;
+          
+          heart.style.left = startX + 'px';
+          heart.style.top = startY + 'px';
+          
+          const duration = 4 + Math.random() * 3;
+          const tx = (Math.random() - 0.5) * 400;
+          const ty = -(window.innerHeight + 100 + Math.random() * 200);
+          
+          heart.style.setProperty('--duration', duration + 's');
+          heart.style.setProperty('--tx', tx + 'px');
+          heart.style.setProperty('--ty', ty + 'px');
+          
+          document.body.appendChild(heart);
+          
+          setTimeout(() => {
+            heart.remove();
+          }, duration * 1000);
+        }
+        
+        setInterval(createHeart, 800 + Math.random() * 1200);
+      })();
+    </script>
   </body>
 </html>
