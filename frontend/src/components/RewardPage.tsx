@@ -28,20 +28,17 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
 
         .cwr-night {
           position: fixed;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%) scale(0.45);
-          transform-origin: center;
-          width: min(100%, 27.5rem);
-          height: auto;
-          aspect-ratio: 440 / 320;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
           filter: blur(0.1vmin);
           background-image: radial-gradient(ellipse at top, transparent 0%, var(--dark-color)), radial-gradient(ellipse at bottom, var(--dark-color), rgba(145, 233, 255, 0.2)), repeating-linear-gradient(220deg, black 0px, black 19px, transparent 19px, transparent 22px), repeating-linear-gradient(189deg, black 0px, black 19px, transparent 19px, transparent 22px), repeating-linear-gradient(148deg, black 0px, black 19px, transparent 19px, transparent 22px), linear-gradient(90deg, #00fffa, #f0f0f0);
           z-index: 0;
         }
 
         .cwr-flowers {
-          position: absolute;
+          position: relative;
           z-index: 2;
         }
 
@@ -373,14 +370,15 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         maxWidth: '100%',
         height: 'auto',
         aspectRatio: '440 / 320',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%) scale(0.45)',
-        display: 'block',
+        position: 'relative',
+        margin: '2rem auto',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
         zIndex: 2,
-        borderRadius: '1.5rem',
-        overflow: 'visible'
+        overflow: 'visible',
+        transform: 'scale(0.45)',
+        transformOrigin: 'top center'
       }}>
         {/* Flower 1 */}
         <div className="cwr-flower cwr-flower--1">
