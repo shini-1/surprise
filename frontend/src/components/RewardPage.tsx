@@ -40,6 +40,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         .cwr-flowers {
           position: relative;
           z-index: 2;
+          transform: scale(0.35);
+          transform-origin: top center;
         }
 
         .cwr-flower {
