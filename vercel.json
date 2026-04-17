@@ -2,16 +2,16 @@
   "version": 2,
   "buildCommand": "bash build.sh",
   "outputDirectory": "frontend/dist",
-    "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "/api/index.py"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"
-      }
-    ]
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
