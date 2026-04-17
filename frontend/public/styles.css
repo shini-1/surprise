@@ -219,6 +219,7 @@ body::after {
   width: min(100%, 27.5rem);
   max-width: 100%;
   height: auto;
+  aspect-ratio: 440 / 320;
   display: block;
   border-radius: 1.5rem;
   background:

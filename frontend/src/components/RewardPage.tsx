@@ -7,10 +7,20 @@ interface Props {
 
 export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
   useEffect(() => {
-    const canvas = document.getElementById('bouquet-canvas') as HTMLCanvasElement;
-    if (canvas && (window as any).drawBouquet) {
-      (window as any).drawBouquet('bouquet-canvas');
-    }
+    // Delay to ensure canvas is rendered and has proper dimensions
+    const timer = setTimeout(() => {
+      const canvas = document.getElementById('bouquet-canvas') as HTMLCanvasElement;
+      if (canvas) {
+        // Get the computed display size
+        const rect = canvas.getBoundingClientRect();
+        
+        if (rect.width > 0 && rect.height > 0 && (window as any).drawBouquet) {
+          (window as any).drawBouquet('bouquet-canvas');
+        }
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
