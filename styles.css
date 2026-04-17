@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Angelleta&family=Great+Vibes&display=swap");
+
+:root {
+  --hot-pink: #FF69B4;
+  --dark-pink: #FF1493;
+  --burgundy: #800020;
+  --cream: #fff8f8;
+  --shadow: rgba(255, 105, 180, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: linear-gradient(135deg, #FF69B4 0%, #FFB6D9 100%);
+  color: var(--burgundy);
+  font-family: "Great Vibes", cursive;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Cloud texture overlay using radial gradients */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 25%),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.35) 0%, transparent 22%),
+    radial-gradient(circle at 25% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 28%),
+    radial-gradient(circle at 75% 80%, rgba(255, 255, 255, 0.35) 0%, transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 35%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(ellipse 200px 150px at 10% 30%, rgba(255, 255, 255, 0.25) 0%, transparent 40%),
+    radial-gradient(ellipse 250px 180px at 85% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 42%),
+    radial-gradient(ellipse 180px 200px at 30% 60%, rgba(255, 255, 255, 0.22) 0%, transparent 38%),
+    radial-gradient(ellipse 220px 160px at 70% 70%, rgba(255, 255, 255, 0.25) 0%, transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes floatHeart {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(1);
+  }
+}
+
+.heart {
+  position: fixed;
+  font-size: 2.5rem;
+  z-index: 1;
+  pointer-events: none;
+  animation: floatHeart var(--duration) ease-in forwards;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.main-card {
+  width: min(100%, 46rem);
+  border: 2px solid rgba(255, 105, 180, 0.3);
+  border-radius: 2rem;
+  background: rgba(255, 248, 248, 0.9);
+  box-shadow: 0 24px 60px var(--shadow);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  position: relative;
+}
+
+.panel-stack {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.hero-title,
+.panel-title {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Angelleta", cursive;
+  line-height: 1.1;
+  text-wrap: balance;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+}
+
+.panel-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.button-row {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.love-button {
+  min-width: 10rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--burgundy) 0%, #641018 100%);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.9rem 1.4rem;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+  box-shadow: 0 14px 28px rgba(128, 0, 32, 0.22);
+}
+
+.love-button:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 18px 30px rgba(128, 0, 32, 0.28);
+}
+
+.love-button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.back-button {
+  align-self: flex-start;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(128, 0, 32, 0.8) 0%, rgba(128, 0, 32, 0.9) 100%);
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.6rem 1rem;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+  box-shadow: 0 8px 16px rgba(128, 0, 32, 0.2);
+}
+
+.back-button:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(128, 0, 32, 0.3);
+}
+
+.back-button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.hero-image {
+  width: min(100%, 20rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  border: 4px solid rgba(128, 0, 32, 0.1);
+  box-shadow: 0 18px 34px rgba(128, 0, 32, 0.12);
+}
+
+.bouquet-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  overflow: visible;
+}
+
+.bouquet-canvas {
+  width: min(100%, 27.5rem);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.8), rgba(255, 244, 247, 0.95)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(244, 194, 194, 0.35));
+  border: 1px solid rgba(128, 0, 32, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.poem-wrap {
+  margin-top: 0.5rem;
+}
+
+.poem-stanza {
+  width: 100%;
+  border-left: 4px solid rgba(128, 0, 32, 0.18);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 1rem 1rem 1rem 1.1rem;
+  text-align: left;
+}
+
+.poem-line {
+  font-size: 1rem;
+  line-height: 1.75;
+  font-family: "Angelleta", cursive;
+  color: var(--burgundy);
+}
+
+@media (max-width: 640px) {
+  .main-card {
+    border-radius: 1.5rem;
+    padding: 1.4rem;
+  }
+
+  .love-button {
+    width: 100%;
+  }
+
+  .back-button {
+    width: 100%;
+  }
+
+  .poem-line {
+    font-size: 0.95rem;
+  }
+}

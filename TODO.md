@@ -1,8 +1,10 @@
-# TODO: Vercel.json Update Plan
+# Vercel Deployment Fix TODO
 
 ## Steps:
-1. [x] Confirm plan with user
-2. [x] Update vercel.json with new configuration
-3. [x] Test local build (run bash build.sh, verify frontend/dist/ exists with index.html and assets)
-4. [ ] Redeploy to Vercel (user action: git commit/push or vercel deploy)
-5. [x] Mark complete
+- [x] Update build.sh to output frontend build to root dist/
+- [x] Replace vercel.json with exact new content
+- [x] Test build.sh (ran, npm not found locally due to no Node.js in .venv; Vercel will handle Node.js)
+- [ ] User to run `vercel --prod` for deployment to new project
+- [x] Plan approved and TODO created
+
+Configuration fixed. Ready for new Vercel deployment. Local test requires Node.js (e.g., exit .venv or install Node).
