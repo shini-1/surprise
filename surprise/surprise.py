@@ -56,7 +56,7 @@ def action_button(label: str, event) -> rx.Component:
 
 def back_button() -> rx.Component:
     return rx.button(
-        "← Back",
+        "←",
         on_click=AppState.go_back,
         class_name="back-button",
     )

@@ -139,17 +139,17 @@
       if (!startTime) startTime = Date.now();
       
       const elapsed = Date.now() - startTime;
+      // Bloom phase oscillates between 0 and 1 every 2 seconds
       const bloomPhase = Math.max(0, Math.min(1, (Math.sin(elapsed / 2000 - Math.PI / 2) + 1) / 2));
+      // Cycle index changes every 5 seconds for color variation
+      const cycle = Math.floor(elapsed / 5000) % 5;
       
       // Clear canvas
       ctx.fillStyle = "#fff";
       ctx.fillRect(0, 0, width, height);
       
-      // Draw stem from bottom
-      drawStem(ctx, centerX, flowerY, height * 0.6);
-      
-      // Draw blooming flower
-      drawBloomingFlower(ctx, centerX, flowerY, bloomPhase);
+      // Draw the bouquet using the existing function
+      drawBouquet(ctx, width, height, cycle, bloomPhase);
       
       requestAnimationFrame(animate);
     }

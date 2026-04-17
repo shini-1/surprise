@@ -1,10 +1,9 @@
-# Vercel Deployment Fix TODO
+# Task: Fix Vercel deployment and bouquet animation
 
 ## Steps:
-- [x] Update build.sh to output frontend build to root dist/
-- [x] Replace vercel.json with exact new content
-- [x] Test build.sh (ran, npm not found locally due to no Node.js in .venv; Vercel will handle Node.js)
-- [ ] User to run `vercel --prod` for deployment to new project
-- [x] Plan approved and TODO created
+- [x] Create/update TODO.md with plan
+- [ ] Update vercel.json with new configuration
+- [ ] Fix animate() function in bouquet.js files (bouquet.js, assets/bouquet.js, frontend/public/bouquet.js)
+- [ ] Git add, commit, and push changes to master
+- [ ] Manual Vercel redeploy (user dashboard step)
 
-Configuration fixed. Ready for new Vercel deployment. Local test requires Node.js (e.g., exit .venv or install Node).
