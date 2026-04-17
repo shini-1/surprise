@@ -6,19 +6,28 @@ import reflex as rx
 IS_VERCEL = os.getenv("VERCEL") == "1"
 IS_PROD = os.getenv("VERCEL_ENV") == "production"
 
-# For production Vercel, use the actual deployment URL
-# For local/development, use localhost
+# Determine the correct API URL based on environment
 if IS_PROD:
-    # On Vercel production, the frontend and API are on the same domain
-    api_url = ""  # Relative path - requests go to same domain
-    deploy_url = f"https://{os.getenv('VERCEL_URL', 'localhost')}"
+    # Production: use environment variable or derive from VERCEL_URL
+    vercel_url = os.getenv("VERCEL_URL", "")
+    if vercel_url:
+        # Use HTTPS for production
+        api_url = f"https://{vercel_url}"
+    else:
+        api_url = "http://localhost:3000"
+    deploy_url = f"https://{vercel_url}" if vercel_url else "http://localhost:3000"
 elif IS_VERCEL:
-    # On Vercel preview/development environment
-    api_url = ""  # Relative path
-    deploy_url = f"https://{os.getenv('VERCEL_URL', 'localhost')}"
+    # Preview/staging environments on Vercel
+    vercel_url = os.getenv("VERCEL_URL", "")
+    if vercel_url:
+        api_url = f"https://{vercel_url}"
+        deploy_url = f"https://{vercel_url}"
+    else:
+        api_url = "http://localhost:3000"
+        deploy_url = "http://localhost:3000"
 else:
     # Local development
-    api_url = "http://localhost:8000"
+    api_url = "http://localhost:3000"
     deploy_url = "http://localhost:3000"
 
 config = rx.Config(
