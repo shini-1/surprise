@@ -8,7 +8,7 @@
     { "source": "/api/(.*)", "destination": "/api/index.py" },
     { "source": "/(.*)", "destination": "/dist/index.html" }
   ],
-  "buildCommand": "bash build.sh",
+  "buildCommand": "cd frontend && npm install && npm run build && cd .. && rm -rf dist && mv frontend/dist dist",
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false
