@@ -88,8 +88,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         }
 
         .cwr-flower--2 {
-          left: 45%;
-          transform: rotate(10deg);
+          left: 50%;
+          transform: translateX(-50%) rotate(20deg);
           animation: cwr-moving-flower-2 4s linear infinite;
         }
 
@@ -115,8 +115,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         }
 
         .cwr-flower--3 {
-          left: 70%;
-          transform: rotate(-10deg);
+          left: 50%;
+          transform: translateX(-50%) rotate(-15deg);
           animation: cwr-moving-flower-3 4s linear infinite;
         }
 
