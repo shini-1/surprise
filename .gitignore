@@ -9,3 +9,29 @@ assets/external/
 __pycache__/
 *.pyc
 reflex.db
+
+# Frontend (Vite + React)
+frontend/node_modules
+frontend/.next
+frontend/.env.local
+frontend/.env.*.local
+frontend/dist
+frontend/.vite
+
+# Backend
+backend/__pycache__
+backend/*.pyc
+backend/.venv
+backend/venv
+backend/.env.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

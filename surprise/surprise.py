@@ -196,7 +196,7 @@ def current_layout() -> rx.Component:
 
 @rx.page(
     title="For Kal",
-    description="A playful little surprise built with Reflex.",
+    description="Surprise be!!!!",
 )
 def index() -> rx.Component:
     return rx.box(

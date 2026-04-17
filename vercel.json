@@ -1,18 +1,15 @@
 {
-  "buildCommand": "reflex export",
-  "outputDirectory": "public",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/public/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+  "version": 2,
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "env": {
+    "VITE_API_URL": {
+      "value": "@api-url"
     }
-  ]
+  },
+  "functions": {
+    "backend/main.py": {
+      "runtime": "python3.11"
+    }
+  }
 }

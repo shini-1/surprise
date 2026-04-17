@@ -1,13 +1,13 @@
 import os
 import sys
+from pathlib import Path
 
-# Set Reflex to production mode and skip recompilation
-os.environ.setdefault("REFLEX_SKIP_COMPILE", "true")
-os.environ.setdefault("REFLEX_ENV_MODE", "prod")
+# Add backend to path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "backend"))
 
-# Import the Reflex app instance
-from surprise.surprise import app as reflex_app  # noqa: E402
+# Import FastAPI app
+from main import app
 
-# Export the ASGI application for Vercel serverless function
-app = reflex_app()
+# ASGI application for Vercel serverless function
+
 
