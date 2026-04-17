@@ -36,7 +36,7 @@
     ctx.restore();
 
     // Draw tulip petals (bloom from bud)
-    const bloomScale = Math.min(1, bloomPhase * 1.3); // Slight overshoot
+    const bloomScale = Math.min(1, bloomPhase * 1.3);
     const budSize = 8 * (1 - bloomScale * 0.8);
 
     for (let i = 0; i < numPetals; i++) {
@@ -87,7 +87,7 @@
     ctx.restore();
   }
 
-  function drawBouquet(ctx, width, height, cycle, bloomPhase) {
+  function drawBouquetFlowers(ctx, width, height, cycle, bloomPhase) {
     // Arrange 5 tulips in a bouquet pattern
     const tulipPositions = [
       { x: width * 0.3, offset: 0 },
@@ -109,12 +109,10 @@
     });
   }
 
-  window.drawBouquet = function drawBouquet(canvasId) {
-    console.log('drawBouquet called with canvasId:', canvasId);
-    
+  window.drawBouquet = function(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) {
-      console.error('Canvas not found:', canvasId);
+      console.error('Canvas not found');
       return;
     }
 
@@ -124,64 +122,55 @@
       return;
     }
 
-    console.log('Initial canvas size:', canvas.width, 'x', canvas.height);
-
-    // Get the display size and set canvas resolution
+    // Get the display size
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     
-    console.log('Display rect:', rect.width, 'x', rect.height, 'DPR:', dpr);
-    
-    // Set canvas resolution (internal drawing size)
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    
-    console.log('Set canvas size to:', canvas.width, 'x', canvas.height);
+    // Set canvas resolution to match display size
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
     
     // Scale context to match device pixel ratio
     ctx.scale(dpr, dpr);
     
-    let width = rect.width;
-    let height = rect.height;
+    const width = rect.width;
+    const height = rect.height;
 
-    console.log('Drawing area:', width, 'x', height);
+    if (width === 0 || height === 0) {
+      console.error('Canvas has zero dimensions');
+      return;
+    }
 
     // Animation loop
     let startTime = null;
     let frameCount = 0;
     
-    function animate() {
+    const animate = () => {
+      if (!startTime) startTime = Date.now();
       frameCount++;
       
-      if (!startTime) startTime = Date.now();
-      
       const elapsed = Date.now() - startTime;
-      // Bloom phase oscillates between 0 and 1 every 2 seconds
       const bloomPhase = Math.max(0, Math.min(1, (Math.sin(elapsed / 2000 - Math.PI / 2) + 1) / 2));
-      // Cycle index changes every 5 seconds for color variation
       const cycle = Math.floor(elapsed / 5000) % 5;
       
-      // Only log occasionally to avoid spam
-      if (frameCount % 60 === 0) {
-        console.log('Animation frame:', frameCount, 'bloomPhase:', bloomPhase.toFixed(2), 'cycle:', cycle);
-      }
+      // Clear canvas with white background
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
       
+      // Reset global alpha
+      ctx.globalAlpha = 1;
+      
+      // Draw the bouquet
       try {
-        // Clear canvas
-        ctx.fillStyle = "#fff";
-        ctx.fillRect(0, 0, width, height);
-        
-        // Draw the bouquet using the existing function
-        drawBouquet(ctx, width, height, cycle, bloomPhase);
+        drawBouquetFlowers(ctx, width, height, cycle, bloomPhase);
       } catch (error) {
-        console.error('Error during drawing:', error);
+        console.error('Error drawing bouquet:', error);
       }
       
       requestAnimationFrame(animate);
-    }
+    };
     
-    console.log('Starting animation loop');
-    // Start animation immediately
+    // Start animation
     animate();
   };
 })();
