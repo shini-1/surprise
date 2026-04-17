@@ -355,14 +355,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
       ref={pageRef}
       className="cwr-not-loaded"
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
+        position: 'relative',
         width: '100%',
-        height: '100%',
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
         minHeight: '100vh',
         backgroundColor: '#000',
         overflow: 'hidden',
@@ -371,7 +365,7 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
     >
       <div className="cwr-night"></div>
       
-      <div className="cwr-flowers" style={{ minHeight: '100vh', width: '100%', position: 'relative' }}>
+      <div className="cwr-flowers" style={{ minHeight: '100vh', width: '100%', position: 'relative', zIndex: 2 }}>
         {/* Flower 1 */}
         <div className="cwr-flower cwr-flower--1">
           <div className="cwr-flower__leafs cwr-flower__leafs--1">
@@ -459,9 +453,11 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
           right: 0,
           maxHeight: '40vh',
           overflowY: 'auto',
-          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          backdropFilter: 'blur(5px)',
           padding: '2rem',
-          zIndex: 100
+          zIndex: 100,
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.8)'
         }}
       >
         <button
