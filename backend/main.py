@@ -44,10 +44,10 @@ def get_poem_stanzas():
     return stanzas
 
 
-@app.get("/")
-def health_check():
-    """Health check endpoint."""
-    return {"status": "ok", "message": "FastAPI backend is running"}
+# @app.get("/")
+# def health_check():
+#     """Health check endpoint."""
+#     return {"status": "ok", "message": "FastAPI backend is running"}
 
 
 @app.get("/api/poem")
