@@ -357,7 +357,7 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
       style={{
         position: 'relative',
         width: '100%',
-        minHeight: '100vh',
+        height: 'auto',
         backgroundColor: '#000',
         overflow: 'hidden',
         perspective: '1000px'
@@ -372,13 +372,9 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         aspectRatio: '440 / 320',
         position: 'relative',
         margin: '2rem auto',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+        display: 'block',
         zIndex: 2,
-        overflow: 'visible',
-        transform: 'scale(0.45)',
-        transformOrigin: 'top center'
+        overflow: 'visible'
       }}>
         {/* Flower 1 */}
         <div className="cwr-flower cwr-flower--1">
