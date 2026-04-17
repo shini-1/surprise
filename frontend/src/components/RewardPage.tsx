@@ -41,7 +41,7 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
           position: relative;
           z-index: 2;
           transform: scale(0.35);
-          transform-origin: top center;
+          transform-origin: center bottom;
         }
 
         .cwr-flower {
@@ -49,11 +49,12 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
           bottom: 10vmin;
           transform-origin: bottom center;
           --fl-speed: 0.8s;
-          width: 100%;
-          left: 0;
+          width: 8vmin;
+          height: 80vmin;
         }
 
         .cwr-flower--1 {
+          left: 20%;
           animation: cwr-moving-flower-1 4s linear infinite;
         }
 
@@ -87,8 +88,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         }
 
         .cwr-flower--2 {
-          left: 50%;
-          transform: rotate(20deg);
+          left: 45%;
+          transform: rotate(10deg);
           animation: cwr-moving-flower-2 4s linear infinite;
         }
 
@@ -114,8 +115,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         }
 
         .cwr-flower--3 {
-          left: 50%;
-          transform: rotate(-15deg);
+          left: 70%;
+          transform: rotate(-10deg);
           animation: cwr-moving-flower-3 4s linear infinite;
         }
 
@@ -326,9 +327,9 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
           100% { transform: translateY(-30vmin); opacity: 0; filter: blur(1vmin); }
         }
 
-        @keyframes cwr-moving-flower-1 { 0%, 100% { transform: rotate(2deg); } 50% { transform: rotate(-2deg); } }
-        @keyframes cwr-moving-flower-2 { 0%, 100% { transform: rotate(18deg); } 50% { transform: rotate(14deg); } }
-        @keyframes cwr-moving-flower-3 { 0%, 100% { transform: rotate(-18deg); } 50% { transform: rotate(-20deg) rotateY(-10deg); } }
+@keyframes cwr-moving-flower-1 { 0%, 100% { transform: rotate(1deg); } 50% { transform: rotate(-1deg); } }
+        @keyframes cwr-moving-flower-2 { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(9deg); } }
+        @keyframes cwr-moving-flower-3 { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(-11deg); } }
 
         @keyframes cwr-blooming-leaf-right { 0% { transform-origin: left; transform: rotate(70deg) rotateY(30deg) scale(0); } }
         @keyframes cwr-blooming-leaf-left { 0% { transform-origin: right; transform: rotate(-70deg) rotateY(30deg) scale(0); } }
@@ -337,6 +338,28 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
 
         .cwr-not-loaded * {
           animation-play-state: paused !important;
+        }
+
+        /* Connection animations */
+        .cwr-connections {
+          animation: fadeInConnect 0.5s 2.5s forwards;
+        }
+        .connect-line-1 { animation: drawLine 2s 2.8s forwards; }
+        .connect-line-2 { animation: drawLine 2s 3.0s forwards; }
+        .connect-line-3 { animation: drawLine 2.5s 3.2s forwards; }
+
+        @keyframes fadeInConnect {
+          to { opacity: 1; }
+        }
+        @keyframes drawLine {
+          to { 
+            stroke-dasharray: 100 0;
+            stroke-dashoffset: 0;
+          }
+        }
+        .cwr-connections line, .cwr-connections path {
+          opacity: 0;
+          stroke-dashoffset: 100;
         }
       `;
       document.head.appendChild(style);
@@ -456,6 +479,30 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
             <div className="cwr-flower__line__leaf cwr-flower__line__leaf--4"></div>
           </div>
         </div>
+
+        {/* Connections Overlay */}
+        <svg className="cwr-connections" viewBox="0 0 100 100" style={{position: 'absolute', width: '100%', height: '100%', zIndex: 1, pointerEvents: 'none'}}>
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+              <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <linearGradient id="vineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#39c6d6"/>
+              <stop offset="50%" stopColor="#a7ffee"/>
+              <stop offset="100%" stopColor="#14757a"/>
+            </linearGradient>
+          </defs>
+          {/* Line 1-2: Flower1(20%) to Flower2(45%) */}
+          <line x1="20" y1="10" x2="45" y2="12" stroke="url(#vineGrad)" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0 100" className="connect-line-1" filter="url(#glow)"/>
+          {/* Line 2-3: Flower2(45%) to Flower3(70%) */}
+          <line x1="45" y1="12" x2="70" y2="11" stroke="url(#vineGrad)" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="0 100" className="connect-line-2" filter="url(#glow)"/>
+          {/* Line 1-3: Flower1 to Flower3 curved connection */}
+          <path d="M 20 13 Q 35 8 70 13" stroke="url(#vineGrad)" strokeWidth="0.5" fill="none" strokeLinecap="round" strokeDasharray="0 150" className="connect-line-3" filter="url(#glow)"/>
+        </svg>
       </div>
 
       {/* Poem Container */}
