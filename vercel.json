@@ -1,13 +1,19 @@
 {
-  "builds": [
+  "buildCommand": "reflex export",
+  "outputDirectory": "public",
+  "serverlessFunctionRegion": "us-east-1",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "public" }
+      "source": "/api/(.*)",
+      "destination": "/api"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/public/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
