@@ -357,22 +357,24 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
       style={{
         position: 'relative',
         width: '100%',
-        height: 'auto',
+        height: '100vh',
         backgroundColor: '#000',
         overflow: 'hidden',
-        perspective: '1000px'
+        perspective: '1000px',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       <div className="cwr-night"></div>
       
       <div className="cwr-flowers" style={{ 
         width: 'min(100%, 27.5rem)',
-        maxWidth: '100%',
-        height: 'auto',
-        aspectRatio: '440 / 320',
+        height: '50vh',
         position: 'relative',
-        margin: '2rem auto',
-        display: 'block',
+        margin: '0 auto',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         zIndex: 2,
         overflow: 'visible'
       }}>
@@ -454,29 +456,29 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         </div>
       </div>
 
-      {/* Overlay for poem */}
+      {/* Poem Container */}
       <div
         style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          maxHeight: '40vh',
+          position: 'relative',
+          width: '100%',
+          height: '50vh',
           overflowY: 'auto',
-          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          backgroundColor: 'rgba(0, 0, 0, 0.95)',
           backdropFilter: 'blur(5px)',
           padding: '2rem',
-          zIndex: 100,
-          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.8)'
+          zIndex: 3,
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.8)',
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
         <button
           className="back-button"
           onClick={() => setCurrentPage(2)}
           style={{
-            position: 'absolute',
-            top: '1rem',
-            left: '1rem',
+            position: 'relative',
+            top: 0,
+            left: 0,
             padding: '0.5rem 1rem',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             color: '#fff',
@@ -494,7 +496,7 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
             color: '#a7ffee',
             textAlign: 'center',
             marginBottom: '1rem',
-            marginTop: '2rem',
+            marginTop: '0.5rem',
             fontSize: '1.5rem',
             fontFamily: 'Great Vibes, cursive'
           }}
