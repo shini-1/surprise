@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const bouquetInitialized = useRef(false);
 
   useEffect(() => {
@@ -47,20 +47,20 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
           return;
         }
 
-        const canvas = canvasRef.current;
-        if (!canvas) {
-          console.log('Canvas not found');
+        const container = containerRef.current;
+        if (!container) {
+          console.log('Container not found');
           return;
         }
 
-        // Ensure the script has loaded and canvas has proper dimensions
-        const rect = canvas.getBoundingClientRect();
+        // Ensure the script has loaded and container has proper dimensions
+        const rect = container.getBoundingClientRect();
         console.log(
-          `Canvas dimensions - width: ${rect.width}, height: ${rect.height}`
+          `Container dimensions - width: ${rect.width}, height: ${rect.height}`
         );
 
         if (rect.width === 0 || rect.height === 0) {
-          console.warn('Canvas dimensions are 0, waiting for layout...');
+          console.warn('Container dimensions are 0, waiting for layout...');
           setTimeout(initBouquet, 200);
           return;
         }
@@ -103,11 +103,9 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
       </button>
       <h2 className="panel-title">I love you my kalon!</h2>
       <div className="bouquet-container">
-        <canvas
-          ref={canvasRef}
+        <div
+          ref={containerRef}
           id="bouquet-canvas"
-          width="440"
-          height="320"
           className="bouquet-canvas"
           aria-label="Illustrated bouquet of flowers"
         />

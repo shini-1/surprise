@@ -71,10 +71,8 @@ def image_card() -> rx.Component:
 
 
 def bouquet_canvas() -> rx.Component:
-    return rx.el.canvas(
+    return rx.el.div(
         id="bouquet-canvas",
-        width="440",
-        height="320",
         class_name="bouquet-canvas",
         aria_label="Illustrated bouquet of flowers",
         on_mount=rx.call_script(
