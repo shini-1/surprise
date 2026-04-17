@@ -2,11 +2,6 @@
   "version": 2,
   "buildCommand": "bash build.sh",
   "outputDirectory": "frontend/dist",
-  "functions": {
-    "api/index.py": {
-      "runtime": "python@3.11"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
