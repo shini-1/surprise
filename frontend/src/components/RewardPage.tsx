@@ -66,8 +66,9 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
 
         .flower {
           position: absolute;
-          bottom: 150px;
-          height: 400px;
+          height: 450px;
+          left: 50%;
+          transform: translateX(-50%);
         }
 
         .flower--1 {
