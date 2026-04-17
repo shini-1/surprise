@@ -1,15 +1,5 @@
 {
   "version": 2,
   "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/dist",
-  "env": {
-    "VITE_API_URL": {
-      "value": "@api-url"
-    }
-  },
-  "functions": {
-    "backend/main.py": {
-      "runtime": "python3.11"
-    }
-  }
+  "outputDirectory": "frontend/dist"
 }
