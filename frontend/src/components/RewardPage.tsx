@@ -67,6 +67,7 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         .flower {
           position: absolute;
           bottom: 150px;
+          height: 400px;
         }
 
         .flower--1 {
@@ -140,25 +141,25 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         .flower__leaf--2 {
           width: 70px;
           height: 90px;
-          top: 10px;
-          left: 40%;
-          transform: rotate(45deg);
+          top: -20px;
+          left: 20%;
+          transform: translateX(-20%) rotate(45deg);
           animation-delay: 0.2s;
         }
 
         .flower__leaf--3 {
           width: 70px;
           height: 90px;
-          top: 10px;
-          right: 40%;
-          transform: rotate(-45deg);
+          top: -20px;
+          right: 20%;
+          transform: translateX(20%) rotate(-45deg);
           animation-delay: 0.4s;
         }
 
         .flower__leaf--4 {
           width: 50px;
           height: 70px;
-          bottom: -20px;
+          top: 20px;
           left: 50%;
           transform: translateX(-50%) rotate(90deg);
           animation-delay: 0.6s;
@@ -190,7 +191,7 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
 
         .flower__line {
           position: absolute;
-          bottom: -200px;
+          bottom: 0;
           left: 50%;
           transform: translateX(-50%);
           width: 8px;
