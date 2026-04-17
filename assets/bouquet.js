@@ -1,173 +1,183 @@
 (() => {
-  // Blossoming flowers with 3D blooming animation
-  // Initialize blossoming flowers with dynamic petals using CSS animations
+  // Blossoming flowers matching CodeWithRandom design
+  // Complete flower with petals, lights, and stem
 
   window.drawBouquet = function(containerId) {
-    // Find the container to insert flowers
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // Clear any existing content
     container.innerHTML = '';
 
-    // Create style element for keyframe animations
-    if (!document.getElementById('flower-bloom-styles')) {
+    // Inject styles
+    if (!document.getElementById('cwr-flower-styles')) {
       const style = document.createElement('style');
-      style.id = 'flower-bloom-styles';
+      style.id = 'cwr-flower-styles';
       style.textContent = `
-        @keyframes bloomPetal {
+        @keyframes bloomFlower {
+          0% { transform: scale(0); }
+          100% { transform: scale(1); }
+        }
+        
+        @keyframes bloomLeaf {
+          0% { transform: scale(0); transform-origin: center; }
+          100% { transform: scale(1); }
+        }
+        
+        @keyframes lightFloat {
           0% {
-            transform: scale(0) rotateX(0deg) rotateY(0deg);
             opacity: 0;
+            transform: translateY(0) translateX(0);
           }
-          50% {
+          25% {
+            opacity: 1;
+          }
+          75% {
             opacity: 1;
           }
           100% {
-            transform: scale(1) rotateX(15deg) rotateY(10deg);
-            opacity: 0.9;
-          }
-        }
-        
-        @keyframes bloomStem {
-          0% {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-          }
-          100% {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 0;
-          }
-        }
-        
-        @keyframes bloomCenter {
-          0% {
-            r: 0;
             opacity: 0;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            r: 8;
-            opacity: 1;
+            transform: translateY(-40px) translateX(var(--tx));
           }
         }
         
-        .flower__leafs {
-          animation: bloomFlower 2.5s 0.8s backwards;
+        @keyframes stemGrow {
+          0% { height: 0; }
+          100% { height: 100%; }
         }
         
-        .petal {
-          transform-origin: center;
-          will-change: transform, opacity;
-        }
+        .flower-svg { perspective: 1000px; }
+        .flower { transform-style: preserve-3d; }
+        .flower__leafs { animation: bloomFlower 1.5s 0.5s ease-out backwards; }
+        .flower__leaf { animation: bloomLeaf 0.8s ease-out backwards; }
+        .flower__light { animation: lightFloat 3s ease-in infinite; }
       `;
       document.head.appendChild(style);
     }
 
-    // Blossoming flower color palette
-    const flowerColors = [
-      { petal: "#FF6B9D", center: "#FFD700" },
-      { petal: "#FFD700", center: "#FF6347" },
-      { petal: "#DA70D6", center: "#FFB6D9" },
-      { petal: "#FF6347", center: "#FF69B4" },
-      { petal: "#FFB6D9", center: "#DA70D6" }
+    const flowers = [
+      { x: 30, offset: 0, delay: 0 },
+      { x: 15, offset: 15, delay: 0.2 },
+      { x: 50, offset: 0, delay: 0.4 },
+      { x: 85, offset: 15, delay: 0.6 },
+      { x: 70, offset: 10, delay: 0.8 }
     ];
 
-    // Create flower bouquet with 5 blossoming flowers
-    const flowerPositions = [
-      { x: 30, offset: 0 },
-      { x: 15, offset: 15 },
-      { x: 50, offset: 0 },
-      { x: 85, offset: 15 },
-      { x: 70, offset: 10 }
-    ];
-
-    // Create SVG container for flowers
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 400 500');
     svg.setAttribute('width', '100%');
     svg.setAttribute('height', '100%');
-    svg.style.display = 'block';
-    svg.style.perspective = '1000px';
+    svg.setAttribute('class', 'flower-svg');
     container.appendChild(svg);
 
-    flowerPositions.forEach((pos, index) => {
-      const colors = flowerColors[index % flowerColors.length];
-      const groupX = (pos.x / 100) * 400;
-      const groupY = 350;
+    flowers.forEach((flower, idx) => {
+      const cx = (flower.x / 100) * 400;
+      const cy = 150;
+      const baseY = 350;
 
-      // Create a group for this flower
-      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      group.setAttribute('class', `flower flower-${index}`);
-      group.style.filter = 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))';
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', `flower flower-${idx}`);
 
-      // Draw stem with animation
+      // Stem
       const stem = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      stem.setAttribute('x1', groupX);
-      stem.setAttribute('y1', groupY);
-      stem.setAttribute('x2', groupX + pos.offset * 2);
-      stem.setAttribute('y2', 150);
-      stem.setAttribute('stroke', '#4b8f47');
-      stem.setAttribute('stroke-width', '3');
+      stem.setAttribute('x1', cx);
+      stem.setAttribute('y1', baseY);
+      stem.setAttribute('x2', cx + flower.offset * 2);
+      stem.setAttribute('y2', cy);
+      stem.setAttribute('stroke', '#14757a');
+      stem.setAttribute('stroke-width', '2.5');
       stem.setAttribute('stroke-linecap', 'round');
-      stem.style.animation = `bloomStem 1.5s ${0.2 + index * 0.1}s ease-in-out forwards`;
-      group.appendChild(stem);
+      g.appendChild(stem);
 
-      // Draw stem leaves
-      const leaf1 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
-      leaf1.setAttribute('cx', groupX - 15);
-      leaf1.setAttribute('cy', groupY - 80);
-      leaf1.setAttribute('rx', '6');
-      leaf1.setAttribute('ry', '18');
-      leaf1.setAttribute('fill', '#5ea65b');
-      leaf1.setAttribute('transform', `rotate(-25 ${groupX - 15} ${groupY - 80})`);
-      leaf1.style.animation = `bloomPetal 1.2s ${1.2 + index * 0.15}s ease-out backwards`;
-      group.appendChild(leaf1);
+      // Stem leaves (4 leaves spread around stem)
+      const stemLeafPositions = [
+        { x: cx - 20, y: baseY - 60, angle: -25 },
+        { x: cx + 20, y: baseY - 80, angle: 25 },
+        { x: cx - 15, y: baseY - 130, angle: -20 },
+        { x: cx + 15, y: baseY - 150, angle: 20 }
+      ];
 
-      // Create petals wrapper group
+      stemLeafPositions.forEach((pos, i) => {
+        const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        leaf.setAttribute('cx', pos.x);
+        leaf.setAttribute('cy', pos.y);
+        leaf.setAttribute('rx', '5');
+        leaf.setAttribute('ry', '15');
+        leaf.setAttribute('fill', '#39c6d6');
+        leaf.setAttribute('opacity', '0.7');
+        leaf.setAttribute('transform', `rotate(${pos.angle} ${pos.x} ${pos.y})`);
+        leaf.style.animation = `bloomLeaf 0.6s ${0.6 + i * 0.1}s ease-out backwards`;
+        g.appendChild(leaf);
+      });
+
+      // Petals wrapper
       const petalsGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       petalsGroup.setAttribute('class', 'flower__leafs');
-      petalsGroup.style.transformOrigin = `${groupX}px ${150}px`;
-      petalsGroup.style.transform = 'translate3d(0, 0, 0)';
+      petalsGroup.style.transformOrigin = `${cx}px ${cy}px`;
 
-      // Draw blossoming petals (8 petals for a fuller bloom)
-      const numPetals = 8;
-      const centerX = groupX + pos.offset;
-      const centerY = 150;
-      const petalRadius = 25;
+      // 4 large organic petal shapes (leaf-like)
+      const petalColors = ['#a7ffee', '#a7ffee', '#54b8aa', '#a7ffee'];
+      const petalAngles = [0, 90, 180, 270];
 
-      for (let i = 0; i < numPetals; i++) {
-        const angle = (Math.PI * 2 * i) / numPetals;
-        const petalX = centerX + Math.cos(angle) * petalRadius;
-        const petalY = centerY + Math.sin(angle) * petalRadius;
-
-        // Create petal circle
-        const petal = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        petal.setAttribute('cx', petalX);
-        petal.setAttribute('cy', petalY);
-        petal.setAttribute('r', '12');
-        petal.setAttribute('fill', colors.petal);
-        petal.setAttribute('class', `petal petal-${i}`);
-        petal.style.transformOrigin = `${centerX}px ${centerY}px`;
-        petal.style.animation = `bloomPetal 1.2s ${1.2 + i * 0.1}s ease-out backwards`;
+      petalAngles.forEach((angle, i) => {
+        const petal = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const rad = (angle * Math.PI) / 180;
+        const px = cx + Math.cos(rad) * 22;
+        const py = cy + Math.sin(rad) * 22;
+        
+        // Create organic petal shape
+        petal.setAttribute('d', `M${px},${py} Q${px + Math.cos(rad) * 8},${py + Math.sin(rad) * 8 + 15} ${px + Math.cos(rad) * 2},${py + Math.sin(rad) * 20}`);
+        petal.setAttribute('fill', petalColors[i]);
+        petal.setAttribute('stroke', '#39c6d6');
+        petal.setAttribute('stroke-width', '0.5');
+        petal.setAttribute('opacity', '0.85');
+        petal.style.animation = `bloomLeaf 0.8s ${0.7 + i * 0.12}s ease-out backwards`;
         petalsGroup.appendChild(petal);
+      });
+
+      g.appendChild(petalsGroup);
+
+      // 8 small light particles
+      for (let i = 0; i < 8; i++) {
+        const light = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const angle = (i / 8) * Math.PI * 2;
+        const lightRadius = 20;
+        const lx = cx + Math.cos(angle) * lightRadius;
+        const ly = cy + Math.sin(angle) * lightRadius;
+
+        light.setAttribute('cx', lx);
+        light.setAttribute('cy', ly);
+        light.setAttribute('r', '1.5');
+        light.setAttribute('fill', i % 2 === 0 ? '#fffb00' : '#23f0ff');
+        light.setAttribute('class', 'flower__light');
+        light.style.filter = 'blur(0.5px)';
+        light.style.setProperty('--tx', `${Math.cos(angle) * 10}px`);
+        light.style.animationDelay = `${0.5 + i * 0.3}s`;
+        g.appendChild(light);
       }
 
-      group.appendChild(petalsGroup);
+      // White center circle
+      const whiteCenterGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const whiteCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      whiteCircle.setAttribute('cx', cx);
+      whiteCircle.setAttribute('cy', cy);
+      whiteCircle.setAttribute('r', '4.5');
+      whiteCircle.setAttribute('fill', '#fff');
+      whiteCircle.setAttribute('opacity', '0.95');
+      whiteCircle.style.animation = `bloomLeaf 0.6s 1.2s ease-out backwards`;
+      whiteCenterGroup.appendChild(whiteCircle);
 
-      // Draw flower center
-      const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      center.setAttribute('cx', centerX);
-      center.setAttribute('cy', centerY);
-      center.setAttribute('r', '0');
-      center.setAttribute('fill', colors.center);
-      center.setAttribute('class', 'flower-center');
-      center.style.animation = `bloomCenter 0.8s ${1.6 + index * 0.1}s ease-out backwards`;
-      group.appendChild(center);
+      // Yellow center
+      const yellowCenter = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      yellowCenter.setAttribute('cx', cx);
+      yellowCenter.setAttribute('cy', cy);
+      yellowCenter.setAttribute('r', '2');
+      yellowCenter.setAttribute('fill', '#ffeb12');
+      yellowCenter.style.animation = `bloomLeaf 0.5s 1.3s ease-out backwards`;
+      whiteCenterGroup.appendChild(yellowCenter);
 
-      svg.appendChild(group);
+      g.appendChild(whiteCenterGroup);
+
+      svg.appendChild(g);
     });
   };
 })();
