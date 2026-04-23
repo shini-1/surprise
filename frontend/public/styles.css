@@ -57,33 +57,65 @@ body::after {
   pointer-events: none;
 }
 
-@keyframes floatHeart {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5) rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg);
-  }
+/* Sakura.js 1.1.1 styles */
+@keyframes fall {
+  0% { opacity: 0.9; top: 0; }
+  100% { opacity: 0.2; top: 100%; }
 }
-
-
-
-.heart {
-  position: fixed;
-  font-size: 3rem;
-  z-index: 1;
+@keyframes blow-soft-left { 0% { margin-left: 0; } 100% { margin-left: -200px; } }
+@keyframes blow-medium-left { 0% { margin-left: 0; } 100% { margin-left: -400px; } }
+@keyframes blow-soft-right { 0% { margin-left: 0; } 100% { margin-left: 200px; } }
+@keyframes blow-medium-right { 0% { margin-left: 0; } 100% { margin-left: 400px; } }
+@keyframes sway-0 {
+  0% { transform: rotate(-5deg); }
+  40% { transform: rotate(28deg); }
+  100% { transform: rotate(3deg); }
+}
+@keyframes sway-1 {
+  0% { transform: rotate(10deg); }
+  40% { transform: rotate(43deg); }
+  100% { transform: rotate(15deg); }
+}
+@keyframes sway-2 {
+  0% { transform: rotate(15deg); }
+  40% { transform: rotate(56deg); }
+  100% { transform: rotate(22deg); }
+}
+@keyframes sway-3 {
+  0% { transform: rotate(25deg); }
+  40% { transform: rotate(74deg); }
+  100% { transform: rotate(37deg); }
+}
+@keyframes sway-4 {
+  0% { transform: rotate(40deg); }
+  40% { transform: rotate(68deg); }
+  100% { transform: rotate(25deg); }
+}
+@keyframes sway-5 {
+  0% { transform: rotate(50deg); }
+  40% { transform: rotate(78deg); }
+  100% { transform: rotate(40deg); }
+}
+@keyframes sway-6 {
+  0% { transform: rotate(65deg); }
+  40% { transform: rotate(92deg); }
+  100% { transform: rotate(58deg); }
+}
+@keyframes sway-7 {
+  0% { transform: rotate(72deg); }
+  40% { transform: rotate(118deg); }
+  100% { transform: rotate(68deg); }
+}
+@keyframes sway-8 {
+  0% { transform: rotate(94deg); }
+  40% { transform: rotate(136deg); }
+  100% { transform: rotate(82deg); }
+}
+.sakura-p {
   pointer-events: none;
-  animation: floatHeart var(--duration) ease-in forwards;
-  text-shadow: 0 2px 8px rgba(255, 105, 180, 0.4);
-  filter: drop-shadow(0 2px 4px rgba(128, 0, 32, 0.3));
+  position: fixed;
+  z-index: 9999;
+  border-radius: 10px 0 10px 0;
 }
 
 .app-shell {
