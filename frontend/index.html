@@ -12,46 +12,33 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="/sakura.js"></script>
     <script>
-      (() => {
-        const petalColors = ['#FFB7C5', '#FFC0CB', '#FFD1DC', '#FFE4E1', '#FFFFFF'];
-        
-        function createPetal() {
-          const petal = document.createElement('div');
-          petal.className = 'petal';
-          // Use a mix of petals and blossoms
-          petal.textContent = Math.random() > 0.5 ? '🌸' : '❀';
-          
-          const color = petalColors[Math.floor(Math.random() * petalColors.length)];
-          petal.style.color = color;
-          
-          const startX = Math.random() * window.innerWidth;
-          const startY = -50; // Start from top for falling petals
-          
-          petal.style.left = startX + 'px';
-          petal.style.top = startY + 'px';
-          
-          const duration = 6 + Math.random() * 4;
-          const tx = (Math.random() - 0.5) * 200;
-          const ty = window.innerHeight + 100;
-          const rotation = Math.random() * 360;
-          const finalRotation = rotation + (Math.random() > 0.5 ? 360 : -360);
-          
-          petal.style.setProperty('--duration', duration + 's');
-          petal.style.setProperty('--tx', tx + 'px');
-          petal.style.setProperty('--ty', ty + 'px');
-          petal.style.setProperty('--rot', rotation + 'deg');
-          petal.style.setProperty('--frot', finalRotation + 'deg');
-          
-          document.body.appendChild(petal);
-          
-          setTimeout(() => {
-            petal.remove();
-          }, duration * 1000);
-        }
-        
-        setInterval(createPetal, 400 + Math.random() * 600);
-      })();
+      window.addEventListener('load', () => {
+        new Sakura('body', {
+          colors: [
+            {
+              gradientColorStart: 'rgba(255, 183, 197, 0.9)',
+              gradientColorEnd: 'rgba(255, 197, 208, 0.9)',
+              gradientColorDegree: 120,
+            },
+            {
+              gradientColorStart: 'rgba(255,189,189)',
+              gradientColorEnd: 'rgba(227,170,181)',
+              gradientColorDegree: 120,
+            },
+            {
+              gradientColorStart: 'rgba(212,152,163)',
+              gradientColorEnd: 'rgba(242,185,196)',
+              gradientColorDegree: 120,
+            }
+          ],
+          delay: 200,
+          fallSpeed: 1,
+          maxSize: 18,
+          minSize: 12
+        });
+      });
     </script>
   </body>
 </html>
