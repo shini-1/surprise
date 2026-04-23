@@ -14,38 +14,43 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       (() => {
-        const heartColors = ['#FF1493', '#FF69B4', '#FFB6D9', '#FF6B9D', '#C4226F'];
+        const petalColors = ['#FFB7C5', '#FFC0CB', '#FFD1DC', '#FFE4E1', '#FFFFFF'];
         
-        function createHeart() {
-          const heart = document.createElement('div');
-          heart.className = 'heart';
-          heart.textContent = '♥';
+        function createPetal() {
+          const petal = document.createElement('div');
+          petal.className = 'petal';
+          // Use a mix of petals and blossoms
+          petal.textContent = Math.random() > 0.5 ? '🌸' : '❀';
           
-          const color = heartColors[Math.floor(Math.random() * heartColors.length)];
-          heart.style.color = color;
+          const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+          petal.style.color = color;
           
           const startX = Math.random() * window.innerWidth;
-          const startY = window.innerHeight + 50;
+          const startY = -50; // Start from top for falling petals
           
-          heart.style.left = startX + 'px';
-          heart.style.top = startY + 'px';
+          petal.style.left = startX + 'px';
+          petal.style.top = startY + 'px';
           
-          const duration = 4 + Math.random() * 3;
-          const tx = (Math.random() - 0.5) * 400;
-          const ty = -(window.innerHeight + 100 + Math.random() * 200);
+          const duration = 6 + Math.random() * 4;
+          const tx = (Math.random() - 0.5) * 200;
+          const ty = window.innerHeight + 100;
+          const rotation = Math.random() * 360;
+          const finalRotation = rotation + (Math.random() > 0.5 ? 360 : -360);
           
-          heart.style.setProperty('--duration', duration + 's');
-          heart.style.setProperty('--tx', tx + 'px');
-          heart.style.setProperty('--ty', ty + 'px');
+          petal.style.setProperty('--duration', duration + 's');
+          petal.style.setProperty('--tx', tx + 'px');
+          petal.style.setProperty('--ty', ty + 'px');
+          petal.style.setProperty('--rot', rotation + 'deg');
+          petal.style.setProperty('--frot', finalRotation + 'deg');
           
-          document.body.appendChild(heart);
+          document.body.appendChild(petal);
           
           setTimeout(() => {
-            heart.remove();
+            petal.remove();
           }, duration * 1000);
         }
         
-        setInterval(createHeart, 800 + Math.random() * 1200);
+        setInterval(createPetal, 400 + Math.random() * 600);
       })();
     </script>
   </body>

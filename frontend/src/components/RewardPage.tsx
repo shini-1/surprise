@@ -206,13 +206,13 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
           bottom: 12vmin; left: -7vmin;
           display: flex; flex-direction: column; align-items: flex-end;
           z-index: 20; transform-origin: bottom center;
-          transform: rotate(-48deg) rotateY(40deg);
+          transform: rotate(-10deg) rotateY(40deg);
         }
 
         .flower__grass--1 { animation: moving-grass 2s linear infinite; }
         .flower__grass--2 {
           left: 2vmin; bottom: 10vmin;
-          transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+          transform: scale(0.5) rotate(10deg) rotateX(10deg) rotateY(-200deg);
           opacity: 0.8; z-index: 0; animation: moving-grass--2 1.5s linear infinite;
         }
 
@@ -262,12 +262,12 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         .flower__g-long {
           --w: 2vmin; --h: 6vmin; --c: #159faa;
           position: absolute; bottom: 10vmin; left: -3vmin;
-          transform-origin: bottom center; transform: rotate(-30deg) rotateY(-20deg);
+          transform-origin: bottom center; transform: rotate(-5deg) rotateY(-20deg);
           display: flex; flex-direction: column; align-items: flex-end;
           animation: flower-g-long-ans 3s linear infinite;
         }
 
-        @keyframes flower-g-long-ans { 0%, 100% { transform: rotate(-30deg) rotateY(-20deg); } 50% { transform: rotate(-32deg) rotateY(-20deg); } }
+        @keyframes flower-g-long-ans { 0%, 100% { transform: rotate(-5deg) rotateY(-20deg); } 50% { transform: rotate(-7deg) rotateY(-20deg); } }
 
         .flower__g-long__top { top: calc(var(--h) * -1); width: calc(var(--w) + 1vmin); height: var(--h); border-top-right-radius: 100%; border-right: 0.7vmin solid var(--c); transform: translate(-0.7vmin, 1vmin); }
         .flower__g-long__bottom { width: var(--w); height: 50vmin; transform-origin: bottom center; background-image: linear-gradient(to top, transparent 30%, var(--c)); box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5); clip-path: polygon(35% 0, 65% 1%, 100% 100%, 0% 100%); }
@@ -351,8 +351,8 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         @keyframes blooming-leaf-left { 0% { transform-origin: right; transform: rotate(-70deg) rotateY(30deg) scale(0); } }
         @keyframes grow-flower-tree { 0% { height: 0; border-radius: 1vmin; } }
         @keyframes blooming-flower { 0% { transform: scale(0); } }
-        @keyframes moving-grass { 0%, 100% { transform: rotate(-48deg) rotateY(40deg); } 50% { transform: rotate(-50deg) rotateY(40deg); } }
-        @keyframes moving-grass--2 { 0%, 100% { transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg); } 50% { transform: scale(0.5) rotate(79deg) rotateX(10deg) rotateY(-200deg); } }
+        @keyframes moving-grass { 0%, 100% { transform: rotate(-10deg) rotateY(40deg); } 50% { transform: rotate(-12deg) rotateY(40deg); } }
+        @keyframes moving-grass--2 { 0%, 100% { transform: scale(0.5) rotate(10deg) rotateX(10deg) rotateY(-200deg); } 50% { transform: scale(0.5) rotate(12deg) rotateX(10deg) rotateY(-200deg); } }
 
         .growing-grass { animation: growing-grass-ans 1s 2s backwards; }
         @keyframes growing-grass-ans { 0% { transform: scale(0); } }

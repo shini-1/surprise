@@ -57,10 +57,10 @@ body::after {
   pointer-events: none;
 }
 
-@keyframes floatHeart {
+@keyframes floatPetal {
   0% {
     opacity: 0;
-    transform: translate(0, 0) scale(0.5);
+    transform: translate(0, 0) rotate(var(--rot)) scale(0.5);
   }
   10% {
     opacity: 1;
@@ -70,18 +70,16 @@ body::after {
   }
   100% {
     opacity: 0;
-    transform: translate(var(--tx), var(--ty)) scale(1);
+    transform: translate(var(--tx), var(--ty)) rotate(var(--frot)) scale(1);
   }
 }
 
-
-
-.heart {
+.petal {
   position: fixed;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   z-index: 1;
   pointer-events: none;
-  animation: floatHeart var(--duration) ease-in forwards;
+  animation: floatPetal var(--duration) linear forwards;
 }
 
 .app-shell {
