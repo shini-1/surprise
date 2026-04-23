@@ -123,10 +123,11 @@ body::after {
   40% { transform: rotate(136deg); }
   100% { transform: rotate(82deg); }
 }
-.sakura {
+.sakura-p {
   pointer-events: none;
   position: fixed;
   z-index: 9999;
+  border-radius: 10px 0 10px 0;
 }
 
 .app-shell {

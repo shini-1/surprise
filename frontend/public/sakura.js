@@ -19,7 +19,7 @@ var Sakura = function Sakura(selector, options) {
   this.el = document.querySelector(selector);
 
   var defaults = {
-    className: 'sakura',
+    className: 'sakura-p',
     fallSpeed: 1,
     maxSize: 14,
     minSize: 10,
@@ -81,7 +81,12 @@ var Sakura = function Sakura(selector, options) {
 
   function elementInViewport(el) {
     var rect = el.getBoundingClientRect();
-    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+      rect.bottom >= 0 &&
+      rect.right >= 0
+    );
   }
 
   this.createPetal = function () {
@@ -112,14 +117,14 @@ var Sakura = function Sakura(selector, options) {
     petal.style.background = "linear-gradient(" + color.gradientColorDegree + "deg, " + color.gradientColorStart + ", " + color.gradientColorEnd + ")";
     petal.style.webkitAnimation = animations;
     petal.style.animation = animations;
-    petal.style.borderRadius = randomInt(_this.settings.maxSize, _this.settings.maxSize + Math.floor(Math.random() * 10)) + "px " + randomInt(1, Math.floor(width / 4)) + "px";
+    petal.style.borderRadius = "10px 0 10px 0";
     petal.style.height = height + "px";
-    petal.style.left = (Math.random() * document.documentElement.clientWidth - 100) + "px";
-    petal.style.marginTop = (-(Math.floor(Math.random() * 20) + 15)) + "px";
     petal.style.width = width + "px";
+    petal.style.left = (Math.random() * window.innerWidth) + "px";
+    petal.style.top = "-20px";
 
     PrefixedEvent(petal, 'AnimationEnd', function () {
-      if (!elementInViewport(petal)) petal.remove();
+      petal.remove();
     });
 
     PrefixedEvent(petal, 'AnimationIteration', function () {
