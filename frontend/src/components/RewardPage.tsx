@@ -310,18 +310,15 @@ export default function RewardPage({ setCurrentPage, poemStanzas }: Props) {
         @keyframes flower__g-fr-leaft-ans-5 { 0% { transform-origin: left; transform: rotate(55deg) scale(0); } }
         @keyframes flower__g-fr-leaft-ans-6 { 0% { transform-origin: right; transform: rotate(25deg) rotateY(-180deg) scale(0); } }
 
-        .long-g { position: absolute; bottom: 25vmin; left: -42vmin; transform-origin: bottom left; }
-        .long-g--1 { bottom: 0vmin; transform: scale(0.8) rotate(-5deg); }
-        .long-g--1 .leaf { -webkit-mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important; }
-        .long-g--1 .leaf--1 { --w: 5vmin; --h: 60vmin; left: -2vmin; transform: rotate(3deg) rotateY(-180deg); }
-        .long-g--2, .long-g--3 { bottom: -3vmin; left: -35vmin; transform-origin: center; transform: scale(0.6) rotateX(60deg); }
-        .long-g--2 .leaf, .long-g--3 .leaf { -webkit-mask-image: linear-gradient(to top, transparent 50%, #079097 80%) !important; }
-        .long-g--2 .leaf--1, .long-g--3 .leaf--1 { left: -1vmin; transform: rotateY(-180deg); }
-        .long-g--3 { left: -17vmin; bottom: 0vmin; }
-        .long-g--4 { left: 25vmin; bottom: -3vmin; transform-origin: center; transform: scale(0.6) rotateX(60deg); }
-        .long-g--5 { left: 42vmin; bottom: 0vmin; transform: scale(0.8) rotate(2deg); }
-        .long-g--6 { left: 0vmin; bottom: -20vmin; z-index: 100; filter: blur(0.3vmin); transform: scale(0.8) rotate(2deg); }
-        .long-g--7 { left: 35vmin; bottom: 20vmin; z-index: -1; filter: blur(0.3vmin); transform: scale(0.6) rotate(2deg); opacity: 0.7; }
+        .long-g { position: absolute; bottom: 25vmin; left: 50%; transform-origin: bottom left; }
+        .long-g--0 { left: 10%; }
+        .long-g--1 { left: 20%; bottom: 0vmin; transform: scale(0.8) rotate(-5deg); }
+        .long-g--2 { left: 30%; bottom: -3vmin; transform-origin: center; transform: scale(0.6) rotateX(60deg); }
+        .long-g--3 { left: 40%; bottom: 0vmin; }
+        .long-g--4 { left: 60%; bottom: -3vmin; transform-origin: center; transform: scale(0.6) rotateX(60deg); }
+        .long-g--5 { left: 70%; bottom: 0vmin; transform: scale(0.8) rotate(2deg); }
+        .long-g--6 { left: 80%; bottom: -20vmin; z-index: 100; filter: blur(0.3vmin); transform: scale(0.8) rotate(2deg); }
+        .long-g--7 { left: 90%; bottom: 20vmin; z-index: -1; filter: blur(0.3vmin); transform: scale(0.6) rotate(2deg); opacity: 0.7; }
 
         .long-g .leaf { --w: 15vmin; --h: 40vmin; --c: #1aaa15; position: absolute; bottom: 0; width: var(--w); height: var(--h); border-top-left-radius: 100%; border-left: 2vmin solid var(--c); -webkit-mask-image: linear-gradient(to top, transparent 20%, #000); transform-origin: bottom center; }
         .long-g .leaf--0 { left: 2vmin; animation: leaf-ans-1 4s linear infinite; }

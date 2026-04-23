@@ -76,8 +76,8 @@ body::after {
 
 .petal {
   position: fixed;
-  font-size: 1.5rem;
-  z-index: 1;
+  font-size: 2rem;
+  z-index: 9999;
   pointer-events: none;
   animation: floatPetal var(--duration) linear forwards;
 }
