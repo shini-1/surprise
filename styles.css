@@ -62,22 +62,10 @@ body::after {
   0% { opacity: 0.9; top: 0; }
   100% { opacity: 0.2; top: 100%; }
 }
-@keyframes blow-soft-left {
-  0% { margin-left: 0; }
-  100% { margin-left: -50%; }
-}
-@keyframes blow-medium-left {
-  0% { margin-left: 0; }
-  100% { margin-left: -100%; }
-}
-@keyframes blow-soft-right {
-  0% { margin-left: 0; }
-  100% { margin-left: 50%; }
-}
-@keyframes blow-medium-right {
-  0% { margin-left: 0; }
-  100% { margin-left: 100%; }
-}
+@keyframes blow-soft-left { 0% { margin-left: 0; } 100% { margin-left: -200px; } }
+@keyframes blow-medium-left { 0% { margin-left: 0; } 100% { margin-left: -400px; } }
+@keyframes blow-soft-right { 0% { margin-left: 0; } 100% { margin-left: 200px; } }
+@keyframes blow-medium-right { 0% { margin-left: 0; } 100% { margin-left: 400px; } }
 @keyframes sway-0 {
   0% { transform: rotate(-5deg); }
   40% { transform: rotate(28deg); }

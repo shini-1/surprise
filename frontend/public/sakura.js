@@ -120,7 +120,7 @@ var Sakura = function Sakura(selector, options) {
     petal.style.borderRadius = "10px 0 10px 0";
     petal.style.height = height + "px";
     petal.style.width = width + "px";
-    petal.style.left = (Math.random() * window.innerWidth) + "px";
+    petal.style.left = (Math.random() * (window.innerWidth + 200) - 100) + "px";
     petal.style.top = "-20px";
 
     PrefixedEvent(petal, 'AnimationEnd', function () {
